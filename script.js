@@ -1,14 +1,30 @@
-// Create a map centered at a specific location and with an initial zoom level
-const map = L.map('map').setView([51.505, -0.09], 13);
+// Define map settings and initial values
+const mapCenter = [51.505, -0.09];
+const mapZoom = 13;
+const markerCoordinates = [26.1858541, 91.7762986];
+const popupContent = "<b>Hello world!</b><br>This is a popup.";
 
-// Add a tile layer (using OpenStreetMap tiles) to the map
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-}).addTo(map);
+// Initialize the map with a specified center and zoom level
+const map = L.map('map').setView(mapCenter, mapZoom);
 
-// Create a marker and add it to the map
-const marker = L.marker([26.1858541, 91.7762986]).addTo(map);
+// Add OpenStreetMap tile layer
+function addTileLayer() {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+  }).addTo(map);
+}
 
-// Add a popup to the marker
-marker.bindPopup("<b>Hello world!</b><br>This is a popup.").openPopup();
+// Create a marker and bind a popup to it
+function createMarker() {
+  const marker = L.marker(markerCoordinates).addTo(map);
+  marker.bindPopup(popupContent).openPopup();
+}
 
+// Call functions to add layers and markers
+function initMap() {
+  addTileLayer();
+  createMarker();
+}
+
+// Initialize the map
+initMap();
