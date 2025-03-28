@@ -1,0 +1,5 @@
+#map {
+  height: 800px;
+  width: 100%; /* Make map responsive */
+  border: 1px solid #ddd; /* Optional: border around map */
+}
